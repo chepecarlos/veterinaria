@@ -35,7 +35,7 @@ if( empty($_SESSION["Usuario"]))
 		      <li><a href="#">Usuario</a>
                 <ul>
                   <li><a href="AddUsuario.php">Añadir</a></li>
-                  <li><a href="#">Eliminar</a></li>
+                  <li><a href="EditUsuario.php">Editar</a></li>
                 </ul>
               </li>	
           <li><a href="#">About Me</a></li>
