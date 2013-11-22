@@ -17,16 +17,20 @@ require("SQL.php");
 			//$queEmp1 =) "VALUES ('".$_POST["user"]."', '".$_POST["pass1"]."', '1', '1');";
 			//echo $queEmp;
 			
-			$queEmp0 = "INSERT INTO `veterinaria`.`emp_empleados` ('emp_nombre1'";
-			$queEmp1 = ") VALUES ('".$_POST["PrimerNombre"]."'";
-			if($_POST["SegundoNombre"] != ""){
-			$queEmp0 = $queEmp0.",'emp_nombre2'";
-			$queEmp1 = $queEmp1.",'".$_POST["SegundoNombre"]."'";
-			}
-			$queEmp1 = $queEmp1.")";
+			$queEmp = "INSERT INTO `veterinaria`.`emp_empleados` (`emp_id`, `emp_nombre1`, `emp_nombre2`, `emp_apellido1`, `emp_apellido2`, `emp_fotoemp`, `emp_direccion`, `emp_telcasa`, `emp_telcelular`, `emp_email`, `emp_dui`, `emp_nit`, `emp_isss`, `emp_licconducir`, `dep_emp_id`, `gen_genero_gen_id`, `esp_emp_id`, `car_emp_id`) 
+			VALUES (NULL, '".$_POST["PrimerNombre"]."', '".$_POST["SegundoNombre"]."', '".$_POST["PrimerApellido"]."', '".$_POST["SegundoApellido"]."', NULL, '".$_POST["Direcion"]."', '".$_POST["Telefono"]."', '".$_POST["TelefonoCel"]."', '".$_POST["E-mail"]."', '".$_POST["DUI"]."', '".$_POST["NIT"]."', '".$_POST["Isss"]."', '".$_POST["LC"]."','".$_POST["Departamento"]."', '".$_POST["SEXO"]."', '".$_POST["Especializacion"]."', '".$_POST["Cargo"]."')";
+			//echo $queEmp;
+			$resEmp = mysql_query($queEmp, $conexion) or die(mysql_error()); 
+			$queEmp = "SELECT `emp_id` FROM `veterinaria`.`emp_empleados` where `emp_nombre1`='".$_POST["PrimerNombre"]."'";
+			//echo "<br>".$queEmp;
+			$resEmp = mysql_query($queEmp, $conexion) or die(mysql_error()); 
+			$ron = mysql_fetch_row($resEmp);
+			//echo $ron[0];
+			$queEmp0 = "INSERT INTO `veterinaria`.`usr_usuarios` (`usr_username`, `usr_passwd`, `usr_accesibilidad`, `emp_usr_id`";
+			$queEmp1 = ") VALUES ('".$_POST["user"]."', '".$_POST["pass1"]."', '".$_POST["Cargo"]."', '".$ron[0]."');";
 			$queEmp = $queEmp0.$queEmp1;
-			echo $queEmp;
-			//$resEmp = mysql_query($queEmp, $conexion) or die(mysql_error()); 
+			//echo "<br>".$queEmp;
+			$resEmp = mysql_query($queEmp, $conexion) or die(mysql_error()); 
 			echo "<p> Creacion de Usuario Satisfactoria </p>";
 			 }
 		 else
@@ -97,12 +101,12 @@ require("SQL.php");
 	</select>
 	</p>
 	<p>Telefono: <input type="text" name="Telefono"></p>
-	<p>Telefono celular:  <input type="text" name="TelefonoCel"></p>
-	<p>E-mail:  <input type="text" name="E-mail"></p>
-	<p>DUI:  <input type="text" name="DUI"></p>	
-	<p>NIT:  <input type="text" name="NIT"></p>
-	<p>ISSS:  <input type="text" name="DUI"></p>	
-	<p>Licencia de conducir: <input type=radio name="LC" value="1" >No <input type=radio name="LC" value="2">no</p>
+	<p>Telefono celular: <input type="text" name="TelefonoCel"></p>
+	<p>E-mail: <input type="text" name="E-mail"></p>
+	<p>DUI: <input type="text" name="DUI"></p>	
+	<p>NIT: <input type="text" name="NIT"></p>
+	<p>ISSS: <input type="text" name="Isss"></p>	
+	<p>Licencia de conducir: <input type=radio name="LC" value="1" >No <input type=radio name="LC" value="2">Si</p>
 	<p><input type="submit" value="Ingresar"></p>
 	</center>
 	</div>
