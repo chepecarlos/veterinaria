@@ -9,7 +9,7 @@ require("Cabeza.php");
 		 if($_POST["pass1"] == $_POST["pass2"]){
 			 $queEmp = "SELECT * FROM `usr_usuarios`";
 			//echo $queEmp;
-			$resEmp = mysql_query($queEmp, $conexxion) or die(mysql_error());
+			$resEmp = mysql_query($queEmp, $conexion) or die(mysql_error());
 			$totEmp = mysql_num_rows($resEmp);
 			//echo $totEmp;
 			$queEmp = "INSERT INTO `veterinaria`.`usr_usuarios` (`usr_id`, `usr_username`, `usr_passwd`, `usr_accesibilidad`, `emp_usr_id`) VALUES ('".$totEmp."', '".$_POST["user"]."', '".$_POST["pass1"]."', '1', '1');";

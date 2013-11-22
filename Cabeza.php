@@ -38,26 +38,18 @@ if( empty($_SESSION["Usuario"]))
                   <li><a href="EditUsuario.php">Editar</a></li>
                 </ul>
               </li>	
-          <li><a href="#">About Me</a></li>
-          <li><a href="#">My Portfolio</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Example Drop Down</a>
-            <ul>
-              <li><a href="#">Drop Down One</a></li>
-              <li><a href="#">Drop Down Two</a>
+              <li><a href="#">Cliente</a>
                 <ul>
-                  <li><a href="#">Sub Drop Down One</a></li>
-                  <li><a href="#">Sub Drop Down Two</a></li>
-                  <li><a href="#">Sub Drop Down Three</a></li>
-                  <li><a href="#">Sub Drop Down Four</a></li>
-                  <li><a href="#">Sub Drop Down Five</a></li>
+                  <li><a href="AddCliente.php">Añadir</a></li>
+                  <li><a href="VerCliente.php">Ver</a></li>
                 </ul>
-              </li>
-              <li><a href="#">Drop Down Three</a></li>
-              <li><a href="#">Drop Down Four</a></li>
-              <li><a href="#">Drop Down Five</a></li>
-            </ul>
-          </li>
+              </li>	
+              <li><a href="#">Mascotas</a>
+                <ul>
+                  <li><a href="AddMascota.php">Añadir</a></li>
+                  <li><a href="EditMascota.php">Editar</a></li>
+                </ul>
+              </li>	
           <li>
 			  <?php
 			  if (! empty($_SESSION["Activo"])) 
