@@ -343,6 +343,11 @@ CREATE TABLE IF NOT EXISTS `veterinaria`.`infm_informacion_mascotas` (
     FOREIGN KEY (`genm_infm_id`)
     REFERENCES `veterinaria`.`genm_genero` (`genm_id`)
     ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_infm_informacion_mascotas_id_propietario`
+    FOREIGN KEY (`id_propietario`)
+    REFERENCES `veterinaria`.`prop_propietarios` (`prop_id`)
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 COMMENT = 'Datos de las mascotas';
@@ -721,6 +726,18 @@ INSERT INTO genm_genero VALUES(15, 'Masculino', 8);
 INSERT INTO genm_genero VALUES(16, 'Femenino', 8);
 INSERT INTO genm_genero VALUES(17, 'Masculino', 9);
 INSERT INTO genm_genero VALUES(18, 'Femenino', 	9);
+
+INSERT INTO `veterinaria`.`emp_empleados` (`emp_id`, `emp_nombre1`, `emp_nombre2`, `emp_apellido1`, `emp_apellido2`, `emp_fotoemp`, `emp_direccion`, `emp_telcasa`, `emp_telcelular`, `emp_email`, `emp_dui`, `emp_nit`, `emp_isss`, `emp_licconducir`, `dep_emp_id`, `gen_genero_gen_id`, `esp_emp_id`, `car_emp_id`) VALUES (NULL, 'Hector', 'Alonso', 'Mendez', 'Orantes', NULL, 'San Martin, San Salvador', '', NULL, NULL, '12345678-9', '1231-12341223-123', NULL, NULL, '1', '1', '1', '1');
+
+INSERT INTO `veterinaria`.`usr_usuarios` (`usr_id`, `usr_username`, `usr_passwd`, `usr_accesibilidad`, `emp_usr_id`) VALUES (NULL, 'admin', '123456', '1', '1');
+
+INSERT INTO `veterinaria`.`doc_doctores` (`doc_id`, `emp_doc_id`) VALUES ('1', '1');
+
+INSERT INTO `veterinaria`.`prop_propietarios` (`prop_id`, `prop_nombre1`, `prop_nombre2`, `prop_apellido1`, `prop_apellido2`, `prop_fnacimiento`, `prop_direccion`, `prop_telcasa`, `prop_telcel`, `prop_teltrabajo`, `prop_email`, `prop_dui`, `prop_nit`, `prop_regfiscal`, `gen_genero_gen_id`) VALUES (NULL, 'Jose', 'Santiago', 'Burgo', 'Mejia', '1987-10-14', 'Santa Tecla, San Salvador', '2342-4532', NULL, NULL, NULL, '12345678-0', '123-21333213-1222', NULL, '1');
+
+INSERT INTO `veterinaria`.`infm_informacion_mascotas` (`infm_id`, `infm_nombre`, `infm_apellido1`, `infm_apellido2`, `infm_foto`, `infm_nacimiento`, `infm_descripcion`, `id_propietario`, `mas_infm_id`, `gen_infm_id`, `esm_infm_id`, `tps_infm_id`, `infm_fingreso`, `infm_fsalida`, `fam_infm_id`, `genm_infm_id`) VALUES (NULL, 'perski', NULL, NULL, NULL, NULL, NULL, '1', '1', '1', '1', '1', '2013-11-25', NULL, '1', '1');
+
+INSERT INTO `veterinaria`.`cit_cita` (`cit_id`, `cit_fecha`, `cit_hora`, `cit_programacion`, `cit_observaciones`, `doc_cit_id`, `infm_cit_id`) VALUES (NULL, '2013-11-28', NULL, 'Consulta general', NULL, '1', '1');
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
