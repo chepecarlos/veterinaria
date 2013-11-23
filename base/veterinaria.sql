@@ -676,6 +676,7 @@ INSERT INTO `veterinaria`.`infm_informacion_mascotas` (`infm_id`, `infm_nombre`,
 INSERT INTO `veterinaria`.`cit_cita` (`cit_id`, `cit_fecha`, `cit_hora`, `cit_programacion`, `estado`, `doc_cit_id`, `infm_cit_id`) VALUES (NULL, '2013-11-28', NULL, 'Consulta general', 'Pendiente', '1', '1');
 INSERT INTO `veterinaria`.`cit_cita` (`cit_id`, `cit_fecha`, `cit_hora`, `cit_programacion`, `estado`, `doc_cit_id`, `infm_cit_id`) VALUES (NULL, '2013-01-28', NULL, 'Consulta general', 'Finalizada', '1', '1');
 INSERT INTO `veterinaria`.`cit_cita` (`cit_id`, `cit_fecha`, `cit_hora`, `cit_programacion`, `estado`, `doc_cit_id`, `infm_cit_id`) VALUES (NULL, '2013-12-28', NULL, 'Consulta general', 'Programada', '1', '1');
+INSERT INTO `veterinaria`.`cit_cita` (`cit_id`, `cit_fecha`, `cit_hora`, `cit_programacion`, `estado`, `doc_cit_id`, `infm_cit_id`) VALUES (NULL, '2012-12-28', NULL, 'Consulta general', 'Perdida', '1', '1');
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
