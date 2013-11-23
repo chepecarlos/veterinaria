@@ -185,26 +185,6 @@ CREATE TABLE IF NOT EXISTS `veterinaria`.`usr_usuarios` (
 ENGINE = InnoDB
 COMMENT = 'Usuarios de acceso al sitio';
 
-
--- -----------------------------------------------------
--- Table `veterinaria`.`doc_doctores`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `veterinaria`.`doc_doctores` ;
-
-CREATE TABLE IF NOT EXISTS `veterinaria`.`doc_doctores` (
-  `doc_id` INT NOT NULL AUTO_INCREMENT COMMENT 'ID del doctor',
-  `emp_doc_id` INT NOT NULL,
-  PRIMARY KEY (`doc_id`, `emp_doc_id`),
-  INDEX `fk_doc_doctores_emp_empleados1_idx` (`emp_doc_id` ASC),
-  CONSTRAINT `fk_doc_doctores_emp_empleados1`
-    FOREIGN KEY (`emp_doc_id`)
-    REFERENCES `veterinaria`.`emp_empleados` (`emp_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-COMMENT = 'Listado de doctores de la veterinaria';
-
-
 -- -----------------------------------------------------
 -- Table `veterinaria`.`mas_mascotas`
 -- -----------------------------------------------------
@@ -343,7 +323,7 @@ CREATE TABLE IF NOT EXISTS `veterinaria`.`cit_cita` (
   INDEX `fk_cit_cita_infm_informacion_mascotas1_idx` (`infm_cit_id` ASC),
   CONSTRAINT `fk_cit_cita_doc_doctores1`
     FOREIGN KEY (`doc_cit_id`)
-    REFERENCES `veterinaria`.`doc_doctores` (`doc_id`)
+    REFERENCES `veterinaria`.`emp_empleados` (`emp_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_cit_cita_infm_informacion_mascotas1`
@@ -686,8 +666,6 @@ INSERT INTO `veterinaria`.`emp_empleados` (`emp_id`, `emp_nombre1`, `emp_nombre2
 INSERT INTO `veterinaria`.`emp_empleados` (`emp_id`, `emp_nombre1`, `emp_nombre2`, `emp_apellido1`, `emp_apellido2`, `emp_fotoemp`, `emp_direccion`, `emp_telcasa`, `emp_telcelular`, `emp_email`, `emp_dui`, `emp_nit`, `emp_isss`, `emp_licconducir`, `dep_emp_id`, `gen_genero_gen_id`, `esp_emp_id`, `car_emp_id`) VALUES (NULL, 'Miguel', 'Liua', 'Iraeta', 'Munios', NULL, 'Santa Tecla, San Salvador', '', NULL, NULL, '12445678-4', '1333-12341223-000', NULL, NULL, '1', '1', '1', '3');
 
 INSERT INTO `veterinaria`.`usr_usuarios` (`usr_id`, `usr_username`, `usr_passwd`, `usr_accesibilidad`, `emp_usr_id`) VALUES (NULL, 'admin', '123456', '1', '1');
-
-INSERT INTO `veterinaria`.`doc_doctores` (`doc_id`, `emp_doc_id`) VALUES ('1', '1');
 
 INSERT INTO `veterinaria`.`prop_propietarios` (`prop_id`, `prop_nombre1`, `prop_nombre2`, `prop_apellido1`, `prop_apellido2`, `prop_fnacimiento`, `prop_direccion`, `prop_telcasa`, `prop_telcel`, `prop_teltrabajo`, `prop_email`, `prop_dui`, `prop_nit`, `prop_regfiscal`, `gen_genero_gen_id`) VALUES (NULL, 'Jose', 'Santiago', 'Burgo', 'Mejia', '1987-10-14', 'Santa Tecla, San Salvador', '2342-4532', NULL, NULL, NULL, '12345678-0', '123-21333213-1222', NULL, '1');
 
