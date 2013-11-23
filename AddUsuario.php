@@ -8,15 +8,7 @@ require("SQL.php");
 	 if($_POST){
 		 
 		 if($_POST["pass1"] == $_POST["pass2"]){
-			//$queEmp = "SELECT * FROM `usr_usuarios`";
-			//echo $queEmp;
-			//$resEmp = mysql_query($queEmp, $conexion) or die(mysql_error());
-			//$totEmp = mysql_num_rows($resEmp);
-			//echo $totEmp;
-			//$queEmp0 = "INSERT INTO `veterinaria`.`usr_usuarios` (`usr_username`, `usr_passwd`, `usr_accesibilidad`, `emp_usr_id`";
-			//$queEmp1 =) "VALUES ('".$_POST["user"]."', '".$_POST["pass1"]."', '1', '1');";
-			//echo $queEmp;
-			
+						
 			$queEmp = "INSERT INTO `veterinaria`.`emp_empleados` (`emp_id`, `emp_nombre1`, `emp_nombre2`, `emp_apellido1`, `emp_apellido2`, `emp_fotoemp`, `emp_direccion`, `emp_telcasa`, `emp_telcelular`, `emp_email`, `emp_dui`, `emp_nit`, `emp_isss`, `emp_licconducir`, `dep_emp_id`, `gen_genero_gen_id`, `esp_emp_id`, `car_emp_id`) 
 			VALUES (NULL, '".$_POST["PrimerNombre"]."', '".$_POST["SegundoNombre"]."', '".$_POST["PrimerApellido"]."', '".$_POST["SegundoApellido"]."', NULL, '".$_POST["Direcion"]."', '".$_POST["Telefono"]."', '".$_POST["TelefonoCel"]."', '".$_POST["E-mail"]."', '".$_POST["DUI"]."', '".$_POST["NIT"]."', '".$_POST["Isss"]."', '".$_POST["LC"]."','".$_POST["Departamento"]."', '".$_POST["SEXO"]."', '".$_POST["Especializacion"]."', '".$_POST["Cargo"]."')";
 			//echo $queEmp;
