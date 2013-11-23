@@ -3,10 +3,47 @@ require("Cabeza.php");
 require("SQL.php");
 ?>
 <?php
+
+		if($_GET)
+			{
+			if($_GET["Estado"] == "AA"){
+				
+				$queEmp =  "UPDATE `veterinaria`.`cit_cita` 
+				SET `cit_fecha` = '".$_GET["Fecha"]."',`cit_hora` = '".$_GET["Hora"].":00 ' 
+				WHERE `cit_cita`.`cit_id` ='".$_GET["ID"]."'";
+				echo $queEmp."<br>";
+				$resEmp = mysql_query($queEmp, $conexion) or die(mysql_error()); 
+				}
+			else if($_GET["Estado"] == "A"){
+				?>
+					<h1> Cambio de fecha y hora</h1>
+					     <center><p>
+						<form name="formulario" method="Get" onSubmit='return Connprobacion()' action="VerCita.php"> 
+	 
+					<p>Fecha (Año-Mes-Dia): <input type="text" name="Fecha"></p>
+					<p>Hora (Hora:Minuto): <input type="text" name="Hora"></p>
+					<input type="radio" name="ID" value=<?php echo $_GET["ID"] ?> checked="true">Cambiar<br>
+					
+					<input type="radio" name="Estado" value="AA" checked="true">Cambiar<br>
+					
+					<p><input type="submit" value="Ingresar"></p>
+						</form>
+					<p></center>
+				<?php
+				}
+			else if($_GET["Estado"] == "C"){
+				$queEmp =  "UPDATE `veterinaria`.`cit_cita` SET `estado` = 'Cancelado' WHERE `cit_cita`.`cit_id` ='".$_GET["ID"]."'";
+				echo $queEmp;
+				$resEmp = mysql_query($queEmp, $conexion) or die(mysql_error()); 
+				echo "S";
+				}
+			}
+		else
+			{
 	 	  	$queEmp = "SELECT * FROM cit_cita where estado = 'Pendiente' ORDER BY cit_fecha, cit_hora;";
 			//echo $queEmp;
 			$resEmp = mysql_query($queEmp, $conexion) or die(mysql_error()); 
-			echo "<p><h1>Lista de Mascotaz</h1></p>";		 
+			echo "<p><h1>Lista de Citas pendientes</h1></p>";		 
 	?>
 				<center><p>
 		<?php
@@ -27,8 +64,11 @@ require("SQL.php");
 					$resEmp2 = mysql_query($queEmp2, $conexion) or die(mysql_error());
 					$row2 = mysql_fetch_row($resEmp2);
 				echo "<td>$row2[1]</td>";
+				echo "<td><a href='?Estado=A&ID=$row[0]'>Actualizar</a></td>";
+				echo "<td><a href='?Estado=C&ID=$row[0]'>Cancelar</a></td>";
 				}				
 			echo "</table>"; 
+		}
 	?> 			
 		</p></center>
            
