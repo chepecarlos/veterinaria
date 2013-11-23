@@ -315,7 +315,7 @@ CREATE TABLE IF NOT EXISTS `veterinaria`.`cit_cita` (
   `cit_fecha` DATE NOT NULL COMMENT 'Fecha de la cita de la mascota',
   `cit_hora` TIME NULL COMMENT 'Hora de la cita',
   `cit_programacion` VARCHAR(75) NOT NULL COMMENT 'Proceso programado para la cita',
-  `cit_observaciones` VARCHAR(75) NULL COMMENT 'Observaciones para la cita',
+  `estado` VARCHAR(75) NULL COMMENT 'Observaciones para la cita',
   `doc_cit_id` INT NOT NULL,
   `infm_cit_id` INT NOT NULL,
   PRIMARY KEY (`cit_id`, `doc_cit_id`, `infm_cit_id`),
@@ -671,8 +671,11 @@ INSERT INTO `veterinaria`.`prop_propietarios` (`prop_id`, `prop_nombre1`, `prop_
 
 INSERT INTO `veterinaria`.`infm_informacion_mascotas` (`infm_id`, `infm_nombre`, `infm_apellido1`, `infm_apellido2`, `infm_foto`, `infm_nacimiento`, `infm_descripcion`, `id_propietario`, `mas_infm_id`, `gen_infm_id`, `esm_infm_id`, `tps_infm_id`, `infm_fingreso`, `infm_fsalida`, `fam_infm_id`) VALUES (NULL, 'perski', NULL, NULL, NULL, NULL, NULL, '1', '1', '1', '1', '1', '2013-11-25', NULL, '1');
 
-INSERT INTO `veterinaria`.`cit_cita` (`cit_id`, `cit_fecha`, `cit_hora`, `cit_programacion`, `cit_observaciones`, `doc_cit_id`, `infm_cit_id`) VALUES (NULL, '2013-11-28', NULL, 'Consulta general', NULL, '1', '1');
+INSERT INTO `veterinaria`.`infm_informacion_mascotas` (`infm_id`, `infm_nombre`, `infm_apellido1`, `infm_apellido2`, `infm_foto`, `infm_nacimiento`, `infm_descripcion`, `id_propietario`, `mas_infm_id`, `gen_infm_id`, `esm_infm_id`, `tps_infm_id`, `infm_fingreso`, `infm_fsalida`, `fam_infm_id`) VALUES (NULL, 'doski', NULL, NULL, NULL, NULL, NULL, '1', '1', '1', '1', '1', '2013-11-25', NULL, '1');
 
+INSERT INTO `veterinaria`.`cit_cita` (`cit_id`, `cit_fecha`, `cit_hora`, `cit_programacion`, `estado`, `doc_cit_id`, `infm_cit_id`) VALUES (NULL, '2013-11-28', NULL, 'Consulta general', 'Pendiente', '1', '1');
+INSERT INTO `veterinaria`.`cit_cita` (`cit_id`, `cit_fecha`, `cit_hora`, `cit_programacion`, `estado`, `doc_cit_id`, `infm_cit_id`) VALUES (NULL, '2013-01-28', NULL, 'Consulta general', 'Finalizada', '1', '1');
+INSERT INTO `veterinaria`.`cit_cita` (`cit_id`, `cit_fecha`, `cit_hora`, `cit_programacion`, `estado`, `doc_cit_id`, `infm_cit_id`) VALUES (NULL, '2013-12-28', NULL, 'Consulta general', 'Programada', '1', '1');
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
