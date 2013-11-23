@@ -54,7 +54,7 @@ if( empty($_SESSION["Usuario"]))
                 <ul>
                   <li><a href="AddCita.php">Añadir</a></li>
                   <li><a href="VerCita.php">Ver citas</a></li>
-                  <li><a href="EditMascota.php">Historia</a></li>
+                  <li><a href="Historia.php">Historial</a></li>
                 </ul>
               </li>	
           <li>
