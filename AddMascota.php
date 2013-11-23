@@ -6,22 +6,33 @@ require("SQL.php");
 	
 	<?php
 	 if($_POST){
-		  	$queEmp = "INSERT INTO `veterinaria`.`prop_propietarios` (`prop_id`, `prop_nombre1`, `prop_nombre2`, `prop_apellido1`, `prop_apellido2`, `prop_fnacimiento`, `prop_direccion`, `prop_telcasa`, `prop_telcel`, `prop_teltrabajo`, `prop_email`, `prop_dui`, `prop_nit`, `prop_regfiscal`, `gen_genero_gen_id`) VALUES ('".$_POST["ID"]."', '".$_POST["Nombre1"]."', '".$_POST["Nombre2"]."', '".$_POST["Apellido1"]."', '".$_POST["Apellido2"]."', NULL, '".$_POST["Direcion"]."', '".$_POST["TelefonoCasa"]."', NULL, NULL, NULL, '".$_POST["DUI"]."', '".$_POST["NIT"]."', NULL, '1');";
-			//echo $queEmp;
+		  	$queEmp = "INSERT INTO `veterinaria`.`infm_informacion_mascotas` (`infm_id`, `infm_nombre`, `infm_apellido1`, `infm_apellido2`, `infm_foto`, `infm_nacimiento`, `infm_descripcion`, `id_propietario`, `mas_infm_id`, `gen_infm_id`, `esm_infm_id`, `tps_infm_id`, `infm_fingreso`, `infm_fsalida`, `fam_infm_id`, `genm_infm_id`) 
+		  	VALUES (NULL, '".$_POST["Nombre1"]."','".$_POST["Apellido1"]."', '".$_POST["Apellido2"]."', NULL, '".$_POST["Nacimiento"]."','".$_POST["Descripcion"]."', '".$_POST["Propietario"]."', '".$_POST["Especie"]."', '".$_POST["Genero"]."', '".$_POST["Estado"]."', '".$_POST["EstadoClinico"]."', '".$_POST["FechaIngeso"]."', null, '".$_POST["Familia"]."', '".$_POST["Genero"]."')";
+		  	echo $queEmp;
 			$resEmp = mysql_query($queEmp, $conexion) or die(mysql_error()); 
-			echo "<p> Creacion de Cliente Satisfecha </p>";
+			echo "<p> Creacion de Cliente mascota </p>";
 		 }
 	 else{	 
 	?>
 				<center><p>
-	<form name="formulario" method="POST" onSubmit='return Connprobacion()' action="AddCliente.php">
+	<form name="formulario" method="POST" onSubmit='return Connprobacion()' action="AddMascota.php">
 	
 	<p>Primer nombre: <input type="text" name="Nombre1"></p>
-	<p>Segundo nombre: <input type="text" name="Nombre2"></p>
 	<p>Primer Apelliso: <input type="text" name="Apellido1"></p>
 	<p>Segundo Apellido: <input type="text" name="Apellido2"></p>
 	<p>Nacimiento(Año-Mes-Dia): <input type="text" name="Nacimiento"></p>
 	<p>Descripcion: <input type="text" name="Descripcion"></p>
+	<p>Propietario: 
+	<select name="Propietario">
+		<?php
+		$queEmp = "SELECT * FROM `prop_propietarios` ";
+		$resEmp = mysql_query($queEmp, $conexion) or die(mysql_error());
+		while ($row = mysql_fetch_row($resEmp)){
+			echo "<option value=".$row[0]." selected>".$row[1]."</option>";
+			}
+		?>
+	</select>
+	</p>
 	<p>Especie: 
 	<select name="Especie">
 		<?php
@@ -55,7 +66,7 @@ require("SQL.php");
 		?>
 	</select>
 	
-	<p>Estado: 
+	<p>Estado control: 
 	<select name="Estado">
 		<?php
 		$queEmp = "SELECT * FROM `esm_estado_mascotas`";
@@ -66,8 +77,8 @@ require("SQL.php");
 		?>
 	</select>
 	</p>
-	<p>EStado salida?:
-	<select name="EstadoSalida">
+	<p>Estado clinico: 
+	<select name="EstadoClinico">
 		<?php
 		$queEmp = "SELECT * FROM `tps_tipo_salida`";
 		$resEmp = mysql_query($queEmp, $conexion) or die(mysql_error());
