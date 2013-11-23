@@ -263,27 +263,6 @@ CREATE TABLE IF NOT EXISTS `veterinaria`.`fam_familia` (
 ENGINE = InnoDB
 COMMENT = 'Tipo de familia de las mascotas';
 
-
--- -----------------------------------------------------
--- Table `veterinaria`.`genm_genero`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `veterinaria`.`genm_genero` ;
-
-CREATE TABLE IF NOT EXISTS `veterinaria`.`genm_genero` (
-  `genm_id` INT NOT NULL,
-  `genm_nombre` VARCHAR(45) NOT NULL COMMENT 'Nombre del genero de la mascota',
-  `fam_genm_id` INT NOT NULL,
-  PRIMARY KEY (`genm_id`, `fam_genm_id`),
-  INDEX `fk_genm_genero_fam_familia1_idx` (`fam_genm_id` ASC),
-  CONSTRAINT `fk_genm_genero_fam_familia1`
-    FOREIGN KEY (`fam_genm_id`)
-    REFERENCES `veterinaria`.`fam_familia` (`fam_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-COMMENT = 'Genero de los animales';
-
-
 -- -----------------------------------------------------
 -- Table `veterinaria`.`infm_informacion_mascotas`
 -- -----------------------------------------------------
@@ -305,14 +284,12 @@ CREATE TABLE IF NOT EXISTS `veterinaria`.`infm_informacion_mascotas` (
   `infm_fingreso` DATE NOT NULL COMMENT 'Fecha de ingreso de la mascota',
   `infm_fsalida` DATE NULL COMMENT 'Fecha de salida de la mascota',
   `fam_infm_id` INT NOT NULL,
-  `genm_infm_id` INT NOT NULL,
-  PRIMARY KEY (`infm_id`, `mas_infm_id`, `gen_infm_id`, `esm_infm_id`, `tps_infm_id`, `fam_infm_id`, `genm_infm_id`,`id_propietario`),
+  PRIMARY KEY (`infm_id`, `mas_infm_id`, `gen_infm_id`, `esm_infm_id`, `tps_infm_id`, `fam_infm_id`, `id_propietario`),
   INDEX `fk_infm_informacion_mascotas_mas_mascotas1_idx` (`mas_infm_id` ASC),
   INDEX `fk_infm_informacion_mascotas_gen_genero1_idx` (`gen_infm_id` ASC),
   INDEX `fk_infm_informacion_mascotas_esm_estado_mascotas1_idx` (`esm_infm_id` ASC),
   INDEX `fk_infm_informacion_mascotas_tps_tipo_salida1_idx` (`tps_infm_id` ASC),
   INDEX `fk_infm_informacion_mascotas_fam_familia1_idx` (`fam_infm_id` ASC),
-  INDEX `fk_infm_informacion_mascotas_genm_genero1_idx` (`genm_infm_id` ASC),
   INDEX `fk_infm_informacion_mascotas_id_propietario_idx` (`id_propietario` ASC),
   CONSTRAINT `fk_infm_informacion_mascotas_mas_mascotas1`
     FOREIGN KEY (`mas_infm_id`)
@@ -337,11 +314,6 @@ CREATE TABLE IF NOT EXISTS `veterinaria`.`infm_informacion_mascotas` (
   CONSTRAINT `fk_infm_informacion_mascotas_fam_familia1`
     FOREIGN KEY (`fam_infm_id`)
     REFERENCES `veterinaria`.`fam_familia` (`fam_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_infm_informacion_mascotas_genm_genero1`
-    FOREIGN KEY (`genm_infm_id`)
-    REFERENCES `veterinaria`.`genm_genero` (`genm_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_infm_informacion_mascotas_id_propietario`
@@ -708,25 +680,6 @@ INSERT INTO fam_familia	VALUES(7, 'Loros', 2);
 INSERT INTO fam_familia	VALUES(8, 'Pericos', 2);
 INSERT INTO fam_familia	VALUES(9, 'Patos', 2);
 
-INSERT INTO genm_genero VALUES(1, 'Masculino', 1);
-INSERT INTO genm_genero VALUES(2,'Femenino', 1);
-INSERT INTO genm_genero VALUES(3, 'Masculino', 2);
-INSERT INTO genm_genero VALUES(4, 'Femenino', 2);
-INSERT INTO genm_genero VALUES(5, 'Masculino', 3);
-INSERT INTO genm_genero VALUES(6, 'Femenino', 3);
-INSERT INTO genm_genero VALUES(7, 'Masculino', 4);
-INSERT INTO genm_genero VALUES(8, 'Femenino', 4);
-INSERT INTO genm_genero VALUES(9, 'Masculino', 5);
-INSERT INTO genm_genero VALUES(10, 'Femenino', 5);
-INSERT INTO genm_genero VALUES(11, 'Masculino', 6);
-INSERT INTO genm_genero VALUES(12, 'Femenino', 6);
-INSERT INTO genm_genero VALUES(13, 'Masculino', 7);
-INSERT INTO genm_genero VALUES(14,'Femenino', 7);
-INSERT INTO genm_genero VALUES(15, 'Masculino', 8);
-INSERT INTO genm_genero VALUES(16, 'Femenino', 8);
-INSERT INTO genm_genero VALUES(17, 'Masculino', 9);
-INSERT INTO genm_genero VALUES(18, 'Femenino', 	9);
-
 INSERT INTO `veterinaria`.`emp_empleados` (`emp_id`, `emp_nombre1`, `emp_nombre2`, `emp_apellido1`, `emp_apellido2`, `emp_fotoemp`, `emp_direccion`, `emp_telcasa`, `emp_telcelular`, `emp_email`, `emp_dui`, `emp_nit`, `emp_isss`, `emp_licconducir`, `dep_emp_id`, `gen_genero_gen_id`, `esp_emp_id`, `car_emp_id`) VALUES (NULL, 'Hector', 'Alonso', 'Mendez', 'Orantes', NULL, 'San Martin, San Salvador', '', NULL, NULL, '12345678-9', '1231-12341223-123', NULL, NULL, '1', '1', '1', '1');
 
 INSERT INTO `veterinaria`.`usr_usuarios` (`usr_id`, `usr_username`, `usr_passwd`, `usr_accesibilidad`, `emp_usr_id`) VALUES (NULL, 'admin', '123456', '1', '1');
@@ -735,7 +688,7 @@ INSERT INTO `veterinaria`.`doc_doctores` (`doc_id`, `emp_doc_id`) VALUES ('1', '
 
 INSERT INTO `veterinaria`.`prop_propietarios` (`prop_id`, `prop_nombre1`, `prop_nombre2`, `prop_apellido1`, `prop_apellido2`, `prop_fnacimiento`, `prop_direccion`, `prop_telcasa`, `prop_telcel`, `prop_teltrabajo`, `prop_email`, `prop_dui`, `prop_nit`, `prop_regfiscal`, `gen_genero_gen_id`) VALUES (NULL, 'Jose', 'Santiago', 'Burgo', 'Mejia', '1987-10-14', 'Santa Tecla, San Salvador', '2342-4532', NULL, NULL, NULL, '12345678-0', '123-21333213-1222', NULL, '1');
 
-INSERT INTO `veterinaria`.`infm_informacion_mascotas` (`infm_id`, `infm_nombre`, `infm_apellido1`, `infm_apellido2`, `infm_foto`, `infm_nacimiento`, `infm_descripcion`, `id_propietario`, `mas_infm_id`, `gen_infm_id`, `esm_infm_id`, `tps_infm_id`, `infm_fingreso`, `infm_fsalida`, `fam_infm_id`, `genm_infm_id`) VALUES (NULL, 'perski', NULL, NULL, NULL, NULL, NULL, '1', '1', '1', '1', '1', '2013-11-25', NULL, '1', '1');
+INSERT INTO `veterinaria`.`infm_informacion_mascotas` (`infm_id`, `infm_nombre`, `infm_apellido1`, `infm_apellido2`, `infm_foto`, `infm_nacimiento`, `infm_descripcion`, `id_propietario`, `mas_infm_id`, `gen_infm_id`, `esm_infm_id`, `tps_infm_id`, `infm_fingreso`, `infm_fsalida`, `fam_infm_id`) VALUES (NULL, 'perski', NULL, NULL, NULL, NULL, NULL, '1', '1', '1', '1', '1', '2013-11-25', NULL, '1');
 
 INSERT INTO `veterinaria`.`cit_cita` (`cit_id`, `cit_fecha`, `cit_hora`, `cit_programacion`, `cit_observaciones`, `doc_cit_id`, `infm_cit_id`) VALUES (NULL, '2013-11-28', NULL, 'Consulta general', NULL, '1', '1');
 
