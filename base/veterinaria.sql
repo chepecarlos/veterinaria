@@ -297,6 +297,7 @@ CREATE TABLE IF NOT EXISTS `veterinaria`.`infm_informacion_mascotas` (
   `infm_foto` VARCHAR(45) NULL COMMENT 'Foto de la mascota',
   `infm_nacimiento` DATE NULL COMMENT 'Fecha de nacimiento de la mascota',
   `infm_descripcion` VARCHAR(100) NULL COMMENT 'Descripcion de la mascota',
+  `id_propietario` INT NOT NULL,
   `mas_infm_id` INT NOT NULL,
   `gen_infm_id` INT NOT NULL,
   `esm_infm_id` INT NOT NULL,
@@ -305,13 +306,14 @@ CREATE TABLE IF NOT EXISTS `veterinaria`.`infm_informacion_mascotas` (
   `infm_fsalida` DATE NULL COMMENT 'Fecha de salida de la mascota',
   `fam_infm_id` INT NOT NULL,
   `genm_infm_id` INT NOT NULL,
-  PRIMARY KEY (`infm_id`, `mas_infm_id`, `gen_infm_id`, `esm_infm_id`, `tps_infm_id`, `fam_infm_id`, `genm_infm_id`),
+  PRIMARY KEY (`infm_id`, `mas_infm_id`, `gen_infm_id`, `esm_infm_id`, `tps_infm_id`, `fam_infm_id`, `genm_infm_id`,`id_propietario`),
   INDEX `fk_infm_informacion_mascotas_mas_mascotas1_idx` (`mas_infm_id` ASC),
   INDEX `fk_infm_informacion_mascotas_gen_genero1_idx` (`gen_infm_id` ASC),
   INDEX `fk_infm_informacion_mascotas_esm_estado_mascotas1_idx` (`esm_infm_id` ASC),
   INDEX `fk_infm_informacion_mascotas_tps_tipo_salida1_idx` (`tps_infm_id` ASC),
   INDEX `fk_infm_informacion_mascotas_fam_familia1_idx` (`fam_infm_id` ASC),
   INDEX `fk_infm_informacion_mascotas_genm_genero1_idx` (`genm_infm_id` ASC),
+  INDEX `fk_infm_informacion_mascotas_id_propietario_idx` (`id_propietario` ASC),
   CONSTRAINT `fk_infm_informacion_mascotas_mas_mascotas1`
     FOREIGN KEY (`mas_infm_id`)
     REFERENCES `veterinaria`.`mas_mascotas` (`mas_id`)
@@ -401,8 +403,6 @@ INSERT INTO mun_municipio (mun_nombre, dep_mun_id) VALUES('San Lorenzo', 14);
 INSERT INTO mun_municipio (mun_nombre, dep_mun_id) VALUES('San Pedro Puxtla', 14);
 INSERT INTO mun_municipio (mun_nombre, dep_mun_id) VALUES('Tacuba', 14);
 INSERT INTO mun_municipio (mun_nombre, dep_mun_id) VALUES('Turín', 14);
-
-
 
 INSERT INTO mun_municipio (mun_nombre, dep_mun_id) VALUES('Cinquera', 11);
 INSERT INTO mun_municipio (mun_nombre, dep_mun_id) VALUES('Villa Dolores', 11);
@@ -516,9 +516,7 @@ INSERT INTO mun_municipio (mun_nombre, dep_mun_id) VALUES('Tepecoyo', 6);
 INSERT INTO mun_municipio (mun_nombre, dep_mun_id) VALUES('Zaragoza', 6);
 
 INSERT INTO mun_municipio (mun_nombre, dep_mun_id) VALUES('Cuyultitán', 7);
-
 INSERT INTO mun_municipio (mun_nombre, dep_mun_id) VALUES('Rosario de La Paz', 7);
-
 INSERT INTO mun_municipio (mun_nombre, dep_mun_id) VALUES('Jerusalén', 7);
 INSERT INTO mun_municipio (mun_nombre, dep_mun_id) VALUES('Mercedes La Ceiba', 7);
 INSERT INTO mun_municipio (mun_nombre, dep_mun_id) VALUES('Olocuilta', 7);
@@ -530,9 +528,7 @@ INSERT INTO mun_municipio (mun_nombre, dep_mun_id) VALUES('San Juan Nonualco', 7
 INSERT INTO mun_municipio (mun_nombre, dep_mun_id) VALUES('San Juan Talpa', 7);
 INSERT INTO mun_municipio (mun_nombre, dep_mun_id) VALUES('San Juan Tepezontes', 7);
 INSERT INTO mun_municipio (mun_nombre, dep_mun_id) VALUES('San Luis La Herradura', 7);
-
 INSERT INTO mun_municipio (mun_nombre, dep_mun_id) VALUES('San Luis Talpa', 7);
-
 INSERT INTO mun_municipio (mun_nombre, dep_mun_id) VALUES('San Miguel Tepezontes', 7);
 INSERT INTO mun_municipio (mun_nombre, dep_mun_id) VALUES('San Pedro Masahuat', 7);
 INSERT INTO mun_municipio (mun_nombre, dep_mun_id) VALUES('San Pedro Nonualco', 7);
@@ -684,9 +680,15 @@ INSERT INTO esp_especializaciones VALUES(3, 'Veterinaria para especies pequeñas
 INSERT INTO esp_especializaciones VALUES(4, 'Veterinaria para especies silvestres', 'Este se encarga de examinar animales no domestico por lo general exoticos.');
 
 INSERT INTO esm_estado_mascotas VALUES(1, 'Enfermo');
-INSERT INTO esm_estado_mascotas VALUES(2, 'Tratamiento');
-INSERT INTO esm_estado_mascotas VALUES(3, 'Alta');
+INSERT INTO esm_estado_mascotas VALUES(2, 'Sano');
+INSERT INTO esm_estado_mascotas VALUES(3, 'Fallecido');
+INSERT INTO esm_estado_mascotas VALUES(4, 'Extraviado');
 
+INSERT INTO tps_tipo_salida VALUES(1, 'Tratamiento');
+INSERT INTO tps_tipo_salida VALUES(2, 'Alta');
+INSERT INTO tps_tipo_salida VALUES(3, 'Cuidado Intensivo');
+INSERT INTO tps_tipo_salida VALUES(4, 'Control'); 	
+	
 INSERT INTO mas_mascotas VALUES(1, 'Mamiferos');
 INSERT INTO mas_mascotas VALUES(2, 'Aves');
 INSERT INTO mas_mascotas VALUES(3, 'Reptiles');
