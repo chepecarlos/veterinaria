@@ -47,7 +47,7 @@ if( empty($_SESSION["Usuario"]))
               <li><a href="#">Mascotas</a>
                 <ul>
                   <li><a href="AddMascota.php">Añadir</a></li>
-                  <li><a href="EditMascota.php">Editar</a></li>
+                  <li><a href="VerMascota.php">ver</a></li>
                 </ul>
               </li>	
               <li><a href="#">Citas</a>
