@@ -681,6 +681,8 @@ INSERT INTO fam_familia	VALUES(8, 'Pericos', 2);
 INSERT INTO fam_familia	VALUES(9, 'Patos', 2);
 
 INSERT INTO `veterinaria`.`emp_empleados` (`emp_id`, `emp_nombre1`, `emp_nombre2`, `emp_apellido1`, `emp_apellido2`, `emp_fotoemp`, `emp_direccion`, `emp_telcasa`, `emp_telcelular`, `emp_email`, `emp_dui`, `emp_nit`, `emp_isss`, `emp_licconducir`, `dep_emp_id`, `gen_genero_gen_id`, `esp_emp_id`, `car_emp_id`) VALUES (NULL, 'Hector', 'Alonso', 'Mendez', 'Orantes', NULL, 'San Martin, San Salvador', '', NULL, NULL, '12345678-9', '1231-12341223-123', NULL, NULL, '1', '1', '1', '1');
+INSERT INTO `veterinaria`.`emp_empleados` (`emp_id`, `emp_nombre1`, `emp_nombre2`, `emp_apellido1`, `emp_apellido2`, `emp_fotoemp`, `emp_direccion`, `emp_telcasa`, `emp_telcelular`, `emp_email`, `emp_dui`, `emp_nit`, `emp_isss`, `emp_licconducir`, `dep_emp_id`, `gen_genero_gen_id`, `esp_emp_id`, `car_emp_id`) VALUES (NULL, 'Jose', Absalon'', 'Martinez', 'Rofriguez', NULL, 'Soyapando, San Salvador', '', NULL, NULL, '12345678-2', '1221-12342223-123', NULL, NULL, '1', '1', '1', '2');
+INSERT INTO `veterinaria`.`emp_empleados` (`emp_id`, `emp_nombre1`, `emp_nombre2`, `emp_apellido1`, `emp_apellido2`, `emp_fotoemp`, `emp_direccion`, `emp_telcasa`, `emp_telcelular`, `emp_email`, `emp_dui`, `emp_nit`, `emp_isss`, `emp_licconducir`, `dep_emp_id`, `gen_genero_gen_id`, `esp_emp_id`, `car_emp_id`) VALUES (NULL, 'Maria', 'Roxana', 'Iraeta', 'Munios', NULL, 'Santa Tecla, San Salvador', '', NULL, NULL, '12445678-4', '1333-12341223-000', NULL, NULL, '1', '1', '1', '3');
 
 INSERT INTO `veterinaria`.`usr_usuarios` (`usr_id`, `usr_username`, `usr_passwd`, `usr_accesibilidad`, `emp_usr_id`) VALUES (NULL, 'admin', '123456', '1', '1');
 
